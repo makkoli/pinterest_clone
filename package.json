@@ -1,0 +1,35 @@
+{
+  "name": "Pinterest_Clone",
+  "version": "1.0.0",
+  "description": "a simple pinterest clone using a js stack",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makkoli/pinterest_clone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/makkoli/pinterest_clone.git/issues"
+  },
+  "homepage": "https://github.com/makkoli/pinterest_clone.git#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "helmet": "^3.1.0",
+    "mongodb": "^2.2.11",
+    "mongoose": "^4.6.6",
+    "mongoose-findorcreate": "^0.1.2",
+    "passport": "^0.3.2",
+    "passport-twitter": "^1.0.4",
+    "pug": "^2.0.0-beta6"
+  },
+  "engines": {
+    "node": "4.6.0"
+  }
+}
