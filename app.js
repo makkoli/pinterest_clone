@@ -53,7 +53,10 @@ passport.use(new TwitterStrategy({
     callbackURL: twitterCallbackURL
     },
     function(token, tokenSecret, profile, done) {
-        User.findOrCreate({ twitterId: profile.id, username: profile.username }, function(err, user) {
+        User.findOrCreate({ twitterId: profile.id, username: profile.username,
+            displayName: profile.displayName,
+            avatar: profile._json.profile_image_url},
+          function(err, user) {
             if (err) { return done(err) };
             done(null, user);
         });

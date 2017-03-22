@@ -12,6 +12,14 @@ var UserSchema = new Schema({
         type: String,
         required: true
     },
+    displayName: {
+      type: String,
+      required: true
+    },
+    avatar: {
+      type: String,
+      required: true
+    },
     linked_images: {
         type: [],
         default: []
