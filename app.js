@@ -78,6 +78,9 @@ app.use(passport.session());
 // Home page
 app.get('/', site.index);
 
+// Loads all images from all users
+app.get('/loadImages', site.loadImages);
+
 // Login with twitter
 app.get('/auth/twitter', passport.authenticate('twitter'));
 

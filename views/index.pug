@@ -4,6 +4,9 @@ include mixins/navbar.pug
 html
     +head
     body
-        +navbar(logged, user, displayName, avatar)
-        div(class="container")
-          h1 Hello World!
+      +navbar(logged, user, displayName, avatar)
+      div(class="container")
+      script(src="https://code.jquery.com/jquery-3.2.1.min.js"
+       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+       crossorigin="anonymous")
+      script(src="/js/pinterest.js")
