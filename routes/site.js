@@ -21,5 +21,11 @@ exports.loadImages = function(req, res) {
 
 // Adds an image from a user
 exports.addUserImage = function(req, res) {
-  siteController.addImage(req.params.username, req.body.title, req.body.link);
+  console.log('reached route');
+  siteController.addImage(req.params.user, req.body.title, req.body.url,
+    function(newImage) {
+      //res.writeHead(200, { 'Content-Type': 'text/plain' });
+      //res.end(JSON.stringify(newImage));
+      res.redirect('/');
+    });
 };

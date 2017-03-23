@@ -6,7 +6,10 @@ html
     body
       +navbar(logged, user, displayName, avatar)
       div(class="container")
+        div(class="grid")
       script(src="https://code.jquery.com/jquery-3.2.1.min.js"
        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
        crossorigin="anonymous")
+      script(src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js")
+      script(src="https://unpkg.com/imagesloaded@4.1/imagesloaded.pkgd.min.js")
       script(src="/js/pinterest.js")

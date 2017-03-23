@@ -19,10 +19,6 @@ var UserSchema = new Schema({
     avatar: {
       type: String,
       required: true
-    },
-    linked_images: {
-        type: [],
-        default: []
     }},
     {
         collection: 'users'

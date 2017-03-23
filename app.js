@@ -81,6 +81,9 @@ app.get('/', site.index);
 // Loads all images from all users
 app.get('/loadImages', site.loadImages);
 
+// Add an image to a users profile
+app.post('/:user/addImage', site.addUserImage);
+
 // Login with twitter
 app.get('/auth/twitter', passport.authenticate('twitter'));
 

@@ -1,0 +1,28 @@
+.grid {
+  max-width: 1100px;
+}
+
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.grid-item {
+  width: 200px;
+  height: auto;
+  float: left;
+  padding: 10px;
+  margin: 10px;
+  background-color: rgba(211,211,211, 0.5);
+  border-radius: 5px;
+  border: 2px solid DarkGray;
+}
+
+.grid-item h3 {
+  text-align: center;
+}
+
+.grid-item h6 {
+  text-align: center;
+}

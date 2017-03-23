@@ -1,18 +1,22 @@
-var User = require('../models/user-model');
+var User = require('../models/user-model'),
+    Image = require('../models/image-model');
 
 // Gets all linked images from all users
 exports.getAllImages = function(cb) {
   var query = {};
+  // Return the images by date descending
+  var sortOption = { date_added: -1 };
 
-  User.find(query, function(err, docs) {
+  Image.find(query).sort(sortOption).exec(function(err, docs) {
     if (err) throw err;
 
     // extract images from the user list
-    var images = docs.map(function(user) {
+    var images = docs.map(function(image) {
         return {
-          username: user.username,
-          avatar: user.avatar,
-          images: user.linked_images
+          username: image.username,
+          avatar: image.avatar,
+          title: image.title,
+          url: image.url
         };
     });
 
@@ -34,16 +38,17 @@ exports.getUserImages = function(username) {
 };
 
 // Adds a linked image to a users profile
-exports.addImage = function(username, title, link) {
-  var query = { username: username };
-  var update = { "$push": {
-    linked_images: {
-      title: title,
-      link: link
-    }
-  }};
+exports.addImage = function(username, title, url, cb) {
+  var newImage = new Image({
+    username: username,
+    title: title,
+    url: url
+  });
 
-  User.update(query, update, null, function(err) {
+  newImage.save(function(err) {
     if (err) throw err;
+    console.log('image added');
+
+    cb(newImage);
   });
 };
