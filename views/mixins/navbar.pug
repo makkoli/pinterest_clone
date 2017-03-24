@@ -15,7 +15,7 @@ mixin navbar(logged, user)
               ul(class="nav navbar-nav navbar-right")
                   if logged
                       li
-                        a(href="/" + user + "/profile" class="navbar-link") Welcome #{displayName}
+                        a(href="#" id="userProfile" class="navbar-link" data-user=user) My Images
                       li
                         img(src=avatar class="img-responsive")
                   else

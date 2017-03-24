@@ -13,19 +13,42 @@ exports.index = function(req, res) {
 
 // Get images from a certain user
 exports.loadImages = function(req, res) {
-  siteController.getAllImages(function(imagesJSON) {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end(JSON.stringify(imagesJSON));
-  });
+  siteController.getAllImages(res.locals.user,
+    function(imagesJSON) {
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      res.end(JSON.stringify(imagesJSON));
+    }
+  );
 };
 
 // Adds an image from a user
 exports.addUserImage = function(req, res) {
-  console.log('reached route');
-  siteController.addImage(req.params.user, req.body.title, req.body.url,
-    function(newImage) {
-      //res.writeHead(200, { 'Content-Type': 'text/plain' });
-      //res.end(JSON.stringify(newImage));
-      res.redirect('/');
-    });
+  if (res.locals.logged && res.locals.user === req.params.user) {
+    siteController.addImage(req.params.user, req.body.title, req.body.url,
+      function(newImage) {
+        res.redirect('/');
+      });
+    }
+};
+
+// Get all images posted by one user
+exports.getUserImages = function(req, res) {
+  siteController.getUserImages(req.query.username, res.locals.user,
+    function(imagesJSON) {
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      res.end(JSON.stringify(imagesJSON));
+    }
+  );
+};
+
+// Deletes an image
+exports.deleteUserImage = function(req, res) {
+  if (res.locals.logged && res.locals.user === req.params.user) {
+    siteController.deleteUserImage(req.params.user,
+      req.params.title,
+      function() {
+        res.redirect('/');
+      }
+    );
+  }
 };

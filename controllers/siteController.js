@@ -2,7 +2,7 @@ var User = require('../models/user-model'),
     Image = require('../models/image-model');
 
 // Gets all linked images from all users
-exports.getAllImages = function(cb) {
+exports.getAllImages = function(user, cb) {
   var query = {};
   // Return the images by date descending
   var sortOption = { date_added: -1 };
@@ -16,7 +16,8 @@ exports.getAllImages = function(cb) {
           username: image.username,
           avatar: image.avatar,
           title: image.title,
-          url: image.url
+          url: image.url,
+          userOwnsImage: image.username === user
         };
     });
 
@@ -25,15 +26,23 @@ exports.getAllImages = function(cb) {
 };
 
 // Gets all linked images from one user
-exports.getUserImages = function(username) {
-  var query = { username: user };
+exports.getUserImages = function(username, userViewing, cb) {
+  var query = { username: username };
 
-  User.findOne(query, function(err, doc) {
+  Image.find(query, function(err, docs) {
     if (err) throw err;
 
-    return doc.map(function(user) {
-        return user.linked_images;
+    var images = docs.map(function(image) {
+        return {
+          username: image.username,
+          avatar: image.avatar,
+          title: image.title,
+          url: image.url,
+          userOwnsImage: image.username === userViewing
+        };
     });
+
+    cb(images);
   });
 };
 
@@ -47,8 +56,18 @@ exports.addImage = function(username, title, url, cb) {
 
   newImage.save(function(err) {
     if (err) throw err;
-    console.log('image added');
 
     cb(newImage);
   });
+};
+
+// Deletes an image posted by a user
+exports.deleteUserImage = function(username, title, cb) {
+  var query = { username: username, title: title };
+
+  Image.remove(query, function(err) {
+    if (err) throw err;
+    
+    cb();
+  })
 };
