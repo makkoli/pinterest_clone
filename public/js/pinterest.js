@@ -1,4 +1,4 @@
-var ajaxURL = "https://pin-clone-fcc.herokuapp.com/"
+var ajaxURL = "https://pin-clone-fcc.herokuapp.com"
 
 // Initialize masonry layout
 var $grid = $('.grid').masonry({
