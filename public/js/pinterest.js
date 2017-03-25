@@ -1,4 +1,4 @@
-var ajaxURL = "http://localhost:8000"
+var ajaxURL = "https://pin-clone-fcc.herokuapp.com/"
 
 // Initialize masonry layout
 var $grid = $('.grid').masonry({
@@ -106,9 +106,6 @@ function prepImage(image) {
 
 // Replaces a broken link with a placeholder image
 function imgError(image) {
-  console.log('image error');
-  console.log(arguments);
-  console.log(image);
-  image.target.src = "https://imgoat.com/uploads/5c48cce2e2/8446.JPG";
+  image.target.src = "../images/placeholder.png";
   return true;
 }
